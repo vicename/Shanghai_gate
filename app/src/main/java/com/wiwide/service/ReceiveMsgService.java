@@ -32,7 +32,6 @@ import com.wiwide.common.Util;
 import com.wiwide.common.WifiNetworkObserver;
 import com.wiwide.ewifi.util.Sha;
 import com.wiwide.ewifi.util.WiWideLogin;
-import com.wiwide.http.HttpHandler;
 import com.wiwide.http.HttpHandlerDC;
 import com.wiwide.wifitool.ApplicationPlus;
 import com.wiwide.wifitool.BindPhoneActivity;
@@ -40,8 +39,6 @@ import com.wiwide.wifitool.BoundListActivity;
 import com.wiwide.wifitool.ConnectionActivity;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -202,6 +199,8 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
             return;
         }
         mMac = Util.getBSSID(this);
+        //获取wan口mac地址
+        getWiwideWanLanMac();
         //获取公安场所代码
         getSaftyLocationCode();
         //一次性获取网络状态
@@ -325,7 +324,7 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
         return false;
     }
 
-    private void getWiWiDeMac() {
+    private void getWiwideWanLanMac() {
         HttpHandlerDC.getWiwideMac(this, new JsonHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -341,14 +340,13 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
                     mWanLanMac = mac;
                     Logger.i("mWanLanmac:"+mac);
                 } else {
-
+                    mWanLanMac=null;
                 }
             }
         });
     }
 
     private void getSaftyLocationCode() {
-//        String mac = Util.getUpperBSSID(ReceiveMsgService.this);
         String mac = CommonDefine.TEST_MAC;
         String stamp = Util.getTime();
         StringBuffer sb = new StringBuffer();
@@ -357,7 +355,6 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
         sb.append("9r]<\\Z,3cP}H!aC_");
         String sigs = sb.toString();
         String sig = Util.getMD5(sigs);
-//        String test = Util.getMD5("00-1F-7A-A3-68-2014447993409r]<\\Z,3cP}H!aC_");
         Logger.i(sig);
         Logger.i(mac + "," + stamp + "," + sig);
 /**
@@ -369,24 +366,27 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
                 super.onSuccess(statusCode, headers, response);
                 int result = response.optInt("code", -1);
                 Logger.i("location result" + String.valueOf(result));
-                if (result == 0) {
-                    JSONObject jObj = response.optJSONObject("data");
-                    mLocationCode = jObj.optString("location_code", "-1");
-                    Logger.i("--locationCode:" + mLocationCode);
-                    return;
-                }
-                if (result == -1) {
-                    toastGo("服务器也提了一个问题!");
-                    UIControler(UI_CONNECTED_FAILD);
-                    return;
-                }
-                if (result == 2) {
-                    return;
-                }
-                if (result == 3) {
-                    UIControler(UI_CONNECTED_FAILD);
-                } else {
-                    UIControler(UI_CONNECTED_FAILD);
+                switch (result) {
+                    case 0:
+                        JSONObject jObj = response.optJSONObject("data");
+                        mLocationCode = jObj.optString("location_code", "-1");
+                        mIsGetLocationCode=true;
+                        Logger.i("--locationCode:" + mLocationCode);
+                        break;
+                    case -1:
+                        toastGo("服务器也提了一个问题!");
+                        UIControler(UI_CONNECTED_FAILD);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        UIControler(UI_CONNECTED_FAILD);
+                        break;
+                    default:
+                        UIControler(UI_CONNECTED_FAILD);
+                        break;
                 }
             }
 
@@ -734,7 +734,7 @@ public class ReceiveMsgService extends Service implements WifiNetworkObserver {
     private View.OnClickListener clickGetWiwidemac = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            getWiWiDeMac();
+            getWiwideWanLanMac();
         }
     };
 
