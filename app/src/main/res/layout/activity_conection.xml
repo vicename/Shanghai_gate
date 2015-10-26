@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg_connection_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context="com.wiwide.wifitool.ConnectionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+            <Button
+                android:id="@+id/btn_test_setting"
+                android:background="@drawable/selector_btn_get_check"
+                android:layout_width="44dp"
+                android:layout_marginTop="25dp"
+                android:layout_height="44dp" />
+            <Button
+                android:id="@+id/btn_test_location_code"
+                android:background="@drawable/selector_btn_get_check"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/btn_test_setting"
+                android:layout_width="44dp"
+                android:layout_height="44dp" />
+            <Button
+                android:id="@+id/btn_test_wiwide_mac"
+                android:background="@drawable/selector_btn_get_check"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/btn_test_location_code"
+                android:layout_width="44dp"
+                android:layout_height="44dp" />
+            <com.wiwide.customProg.ProgressBarCircularIndeterminate
+                android:id="@+id/progress"
+                android:layout_marginTop="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#ccffffff"/>
+            <ImageView
+                android:id="@+id/btn_reconnect"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="36dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/selector_btn_get_check"
+                android:src="@mipmap/ic_replay_white_36dp" />
+
+            <ImageView
+                android:id="@+id/top_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/icon_connection_above" />
+
+            <ImageView
+                android:id="@+id/top_pic_below"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_pic"
+                android:src="@mipmap/icon_connection_below" />
+
+            <TextView
+                android:id="@+id/tv_isconnected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_pic"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="欢迎进入上海网关"
+                android:textColor="@color/white_main"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_connection_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_isconnected"
+                android:gravity="center"
+                android:text="@string/connection_tip"
+                android:textColor="@color/white_light"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@color/white_extra_light" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_android_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:text="你的手机好萌呀"
+            android:textColor="@color/white_light"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_command_phones"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_btn_connection_main"
+            android:text="管理已绑定设备"
+            android:textColor="@color/white_main"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</LinearLayout>

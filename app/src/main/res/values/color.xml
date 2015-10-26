@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tran1">#666666</color>
+    <color name="tran2">#007968</color>
+    <color name="main_bg">#66bb6a</color>
+    <color name="medium_bg">#4caf50</color>
+    <color name="darker_bg">#ff3ba842</color>
+    <color name="white_main">#f2f4f8</color>
+    <color name="white_meedium">#ccf2f4f8</color>
+    <color name="white_light">#99f2f4f8</color>
+    <color name="white_extra_light">#66f2f4f8</color>
+    <color name="light_btn_selected">#d3d3d3</color>
+    <color name="clean_btn_selected">#15666666</color>
+    <color name="clean">#00ffffff</color>
+
+    <color name="bg_yellow">#fdd835</color>
+</resources>

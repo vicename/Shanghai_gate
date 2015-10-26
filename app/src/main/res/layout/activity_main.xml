@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tip_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/tip_phone"/>
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tip_phone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@id/tip_phone"
+        android:inputType="phone"
+        android:maxLength="12"/>
+
+    <Button
+        android:id="@+id/get_authentication_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/get_authentication_code"/>
+
+    <TextView
+        android:id="@+id/tip_authentication_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/get_authentication_code"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/authentication"/>
+
+    <EditText
+        android:id="@+id/authentication_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tip_authentication_code"
+        android:layout_alignLeft="@id/phone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@id/tip_authentication_code"
+        android:inputType="phone"/>
+
+    <Button
+        android:id="@+id/bind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tip_authentication_code"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/bind"/>
+
+    <Button
+        android:id="@+id/un_bind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bind"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="解除绑定"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/un_bind"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="审计设备提交认证中心"
+        />
+
+    <Button
+        android:id="@+id/btn_security_test"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="开始安全审计"
+        />
+
+</RelativeLayout>
